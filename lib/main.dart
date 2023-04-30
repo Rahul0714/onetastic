@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onetastic/jokes/jokes.dart';
 
 import 'calculator/calculator_page.dart';
 import 'clock/clock_home.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CalculatorPage(),
+      home: const JokePage(),
     );
   }
 }
