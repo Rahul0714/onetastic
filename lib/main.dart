@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'calculator/calculator_page.dart';
+import 'clock/clock_home.dart';
 
 void main() {
   runApp(const MyApp());

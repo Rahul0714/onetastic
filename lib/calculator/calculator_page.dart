@@ -28,22 +28,19 @@ class _CalculatorPage extends State<CalculatorPage> {
                       MediaQuery.of(context).size.width * 0.4,
                       0)
                   : EdgeInsets.fromLTRB(
-                      0,
+                      MediaQuery.of(context).size.width * 0.05,
                       MediaQuery.of(context).size.height * 0.3,
                       MediaQuery.of(context).size.width * 0.05,
                       0),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(21),
                   color: Colors.grey[800]),
-              child: Directionality(
-                textDirection: TextDirection.rtl,
-                child: Text(
-                  _text.isEmpty ? "Calculator" : _text,
-                  style: const TextStyle(
-                      fontSize: 42,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300),
-                ),
+              child: Text(
+                _text.isEmpty ? "Calculator" : _text,
+                style: const TextStyle(
+                    fontSize: 42,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w300),
               ),
             ),
           ),
@@ -94,6 +91,7 @@ class _CalculatorPage extends State<CalculatorPage> {
                           if (_text.contains("AC")) {
                             _text = "";
                           }
+
                           setState(() {});
                         },
                         child: Center(
