@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:onetastic/home_page_transition.dart';
 import 'package:onetastic/jokes/jokes.dart';
 
 import 'calculator/calculator_page.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const WeatherPage(),
+      home: const HomemPageT(),
     );
   }
 }

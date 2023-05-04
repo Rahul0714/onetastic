@@ -18,7 +18,6 @@ class _JokePageState extends State<JokePage> {
   void initState() {
     super.initState();
     fetchData();
-    print("da");
   }
 
   Future<void> fetchData() async {
@@ -49,13 +48,13 @@ class _JokePageState extends State<JokePage> {
                   Container(
                     child: Text(
                       setup,
-                      style: TextStyle(color: Colors.white, fontSize: 24),
+                      style: const TextStyle(color: Colors.white, fontSize: 24),
                     ),
                   ),
                   Container(
                     child: Text(
                       delivery,
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.white,
                           fontSize: 24,
                           fontWeight: FontWeight.bold),
@@ -66,7 +65,7 @@ class _JokePageState extends State<JokePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => fetchData(),
-        child: Icon(Icons.refresh),
+        child: const Icon(Icons.refresh),
       ),
     );
   }
