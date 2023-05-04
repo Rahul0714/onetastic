@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class CalculatorPage extends StatefulWidget {
@@ -10,6 +12,10 @@ class CalculatorPage extends StatefulWidget {
 class _CalculatorPage extends State<CalculatorPage> {
   int _count = 0;
   String _text = "";
+  int _itemCount = 20;
+  int _crossAxis = 4;
+  List<String> cal = [];
+  String controller = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,21 +41,24 @@ class _CalculatorPage extends State<CalculatorPage> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(21),
                   color: Colors.grey[800]),
-              child: Text(
-                _text.isEmpty ? "Calculator" : _text,
-                style: const TextStyle(
-                    fontSize: 42,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w300),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Text(
+                  _text.isEmpty ? "Calculator" : _text,
+                  style: const TextStyle(
+                      fontSize: 42,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w300),
+                ),
               ),
             ),
           ),
           Expanded(
             flex: 7,
             child: GridView.builder(
-              itemCount: 20,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4),
+              itemCount: _itemCount,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: _crossAxis),
               itemBuilder: ((context, index) {
                 return ++_count % 4 == 0
                     ? Padding(
@@ -65,8 +74,41 @@ class _CalculatorPage extends State<CalculatorPage> {
                           child: InkWell(
                             onTap: () {
                               _text += _symbols[index];
-                              if (_text.contains("AC")) {
+                              if (_text.contains("AC") ||
+                                  _text.contains("<>")) {
                                 _text = "";
+                                controller = "";
+                              } else if (_text.contains("=")) {
+                                int res = 0;
+                                if (_text.contains("+") ||
+                                    _text.contains("-")) {
+                                  res = 0;
+                                } else {
+                                  res = 1;
+                                }
+                                _text = _text.substring(0, _text.length - 1);
+                                print(_text);
+                                _text.contains("+")
+                                    ? _text
+                                        .split("+")
+                                        .forEach((e) => res += int.parse(e))
+                                    : _text.contains("-")
+                                        ? _text.split("-").forEach((e) => res =
+                                            res - int.parse(e)) //check this
+                                        : _text.contains("x")
+                                            ? _text.split("x").forEach(
+                                                (e) => res *= int.parse(e))
+                                            : _text.contains("/")
+                                                ? _text.split("/").forEach(
+                                                    (e) => res = (res /
+                                                            int.parse(
+                                                                e)) //check this
+                                                        .floor())
+                                                : _text.split("%").forEach(
+                                                    (e) => res %= int.parse(e));
+
+                                //cal.forEach((e) => {res += int.parse(e)});
+                                _text = res.toString();
                               }
                               setState(() {});
                             },
@@ -88,8 +130,31 @@ class _CalculatorPage extends State<CalculatorPage> {
                     : InkWell(
                         onTap: () {
                           _text += _symbols[index];
-                          if (_text.contains("AC")) {
+                          if (_text.contains("AC") || _text.contains("<>")) {
                             _text = "";
+                            controller = "";
+                          } else if (_text.contains("=")) {
+                            int res = 0;
+                            _text = _text.substring(0, _text.length - 1);
+                            _text.contains("+")
+                                ? _text
+                                    .split("+")
+                                    .forEach((e) => res += int.parse(e))
+                                : _text.contains("-")
+                                    ? _text.split("-").forEach(
+                                        (e) => res = res - int.parse(e))
+                                    : _text.contains("x")
+                                        ? _text
+                                            .split("x")
+                                            .forEach((e) => res *= int.parse(e))
+                                        : _text.contains("/")
+                                            ? _text.split("/").forEach((e) =>
+                                                res = (res / int.parse(e))
+                                                    .floor())
+                                            : _text.split("%").forEach(
+                                                (e) => res %= int.parse(e));
+                            //cal.forEach((e) => {res += int.parse(e)});
+                            _text = res.toString();
                           }
 
                           setState(() {});
