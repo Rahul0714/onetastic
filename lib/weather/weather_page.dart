@@ -96,27 +96,40 @@ class _WeatherPageState extends State<WeatherPage> {
             child: CircularProgressIndicator(),
           )
         : Scaffold(
-            backgroundColor: Colors.black,
             body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  height: 100,
-                  width: double.maxFinite,
-                  child: Text(
-                    timeZone!,
-                    style: const TextStyle(fontSize: 21, color: Colors.white),
+                Expanded(
+                  child: Card(
+                    child: Container(
+                      height: 100,
+                      width: double.maxFinite,
+                      child: Text(
+                        timeZone!,
+                        style: const TextStyle(
+                          fontSize: 21,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-                Container(
-                  height: 100,
-                  width: double.maxFinite,
-                  child: Text(
-                    tempMax![0].toString(),
-                    style: const TextStyle(fontSize: 21, color: Colors.white),
+                Card(
+                  child: Container(
+                    height: 100,
+                    width: double.maxFinite,
+                    child: Text(
+                      tempMax![0].toString(),
+                      style: const TextStyle(
+                        fontSize: 21,
+                      ),
+                    ),
                   ),
                 ),
+                Expanded(
+                    child: Row(
+                  children: [],
+                ))
               ],
             ),
           );
