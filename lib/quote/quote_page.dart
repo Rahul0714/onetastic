@@ -42,36 +42,43 @@ class _QuotePageState extends State<QuotePage> {
     return quote.isEmpty
         ? const Center(child: CircularProgressIndicator())
         : Scaffold(
-            backgroundColor: Colors.black,
-            body: Center(
-              child: _isLoading
-                  ? const CircularProgressIndicator()
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          alignment: Alignment.center,
-                          child: Text(
-                            quote,
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold),
+            body: _isLoading
+                ? const Center(child: CircularProgressIndicator())
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Card(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.4,
+                          width: double.maxFinite,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Center(
+                                child: Text(
+                                  quote,
+                                  style: const TextStyle(fontSize: 24),
+                                ),
+                              ),
+                              Text(
+                                "- $auther",
+                                style: const TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
                         ),
-                        Container(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            '- $auther',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 24,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-            ),
+                      ),
+                      // Card(
+                      //   child: Text(
+                      //     delivery,
+                      //     style: const TextStyle(
+                      //         fontSize: 24, fontWeight: FontWeight.bold),
+                      //   ),
+                      // ),
+                    ],
+                  ),
             floatingActionButton: FloatingActionButton(
               onPressed: () => fetchData(),
               child: Icon(Icons.refresh),

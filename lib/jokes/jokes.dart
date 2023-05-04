@@ -38,28 +38,44 @@ class _JokePageState extends State<JokePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
       body: Center(
         child: _isLoading
             ? const CircularProgressIndicator()
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    child: Text(
-                      setup,
-                      style: const TextStyle(color: Colors.white, fontSize: 24),
+                  Card(
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.4,
+                      width: double.maxFinite,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Text(
+                              setup,
+                              style: const TextStyle(fontSize: 24),
+                            ),
+                          ),
+                          Center(
+                            child: Text(
+                              delivery,
+                              style: const TextStyle(
+                                  fontSize: 24, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  Container(
-                    child: Text(
-                      delivery,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  // Card(
+                  //   child: Text(
+                  //     delivery,
+                  //     style: const TextStyle(
+                  //         fontSize: 24, fontWeight: FontWeight.bold),
+                  //   ),
+                  // ),
                 ],
               ),
       ),

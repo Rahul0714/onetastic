@@ -51,7 +51,7 @@ class _HomemPageTState extends State<HomemPageT> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridView.builder(
-        itemCount: 10,
+        itemCount: 8,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
@@ -64,15 +64,112 @@ class _HomemPageTState extends State<HomemPageT> {
               child: Center(
                 child: Container(
                   child: index == 0
-                      ? const Text("Jokes")
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image(
+                              image: const AssetImage('assets/joke.png'),
+                              height: MediaQuery.of(context).size.height * 0.1,
+                              width: MediaQuery.of(context).size.height * 0.1,
+                            ),
+                            const Text(
+                              'Jokes',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17),
+                            ),
+                          ],
+                        )
                       : index == 1
-                          ? const Text("Quote")
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image(
+                                  image: const AssetImage('assets/quote.png'),
+                                  width:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                ),
+                                const Text(
+                                  "Quotes",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                )
+                              ],
+                            )
                           : index == 2
-                              ? const Text("Clock")
+                              ? Stack(
+                                  alignment: Alignment.bottomCenter,
+                                  children: const [
+                                    Image(
+                                      image: AssetImage('assets/clock.avif'),
+                                    ),
+                                    Text(
+                                      'Alarm',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 17),
+                                    ),
+                                  ],
+                                )
                               : index == 3
-                                  ? const Text("Calculate")
+                                  ? Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image(
+                                          image: const AssetImage(
+                                              'assets/calculator.png'),
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.1,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.1,
+                                        ),
+                                        const Text(
+                                          'Calculator',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 17),
+                                        ),
+                                      ],
+                                    )
                                   : index == 4
-                                      ? const Text("Weather")
+                                      ? Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Image(
+                                              image: const AssetImage(
+                                                  'assets/weather.png'),
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.1,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.1,
+                                            ),
+                                            const Text(
+                                              'Weather',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 17),
+                                            ),
+                                          ],
+                                        )
                                       : const Text('tbd'),
                 ),
               ),
